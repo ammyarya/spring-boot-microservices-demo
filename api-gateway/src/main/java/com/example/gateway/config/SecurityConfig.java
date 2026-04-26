@@ -16,7 +16,17 @@ public class SecurityConfig {
             .csrf(ServerHttpSecurity.CsrfSpec::disable)
             .authorizeExchange(exchanges -> exchanges
                 .pathMatchers("/api/auth/**").permitAll()
-                .pathMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll()
+                .pathMatchers(
+                    "/v3/api-docs/**", 
+                    "/swagger-ui/**", 
+                    "/swagger-ui.html", 
+                    "/webjars/**",
+                    "/auth/v3/api-docs",
+                    "/user/v3/api-docs",
+                    "/document/v3/api-docs",
+                    "/notification/v3/api-docs",
+                    "/worker/v3/api-docs"
+                ).permitAll()
                 .anyExchange().authenticated()
             )
             .httpBasic(ServerHttpSecurity.HttpBasicSpec::disable)
